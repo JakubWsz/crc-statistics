@@ -6,10 +6,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import pl.crc.statistics.infrastructure.converter.CarDAOtoCar;
-import pl.crc.statistics.infrastructure.converter.CarToCarDAO;
-import pl.crc.statistics.infrastructure.converter.EmployeeToEmployeeDAO;
-import pl.crc.statistics.infrastructure.converter.OfficeToOfficeDAO;
+import pl.crc.statistics.infrastructure.converter.*;
 
 @Configuration
 public class SpringConvertersConfig implements WebMvcConfigurer {
@@ -23,6 +20,7 @@ public class SpringConvertersConfig implements WebMvcConfigurer {
         registry.addConverter(new OfficeToOfficeDAO());
         registry.addConverter(new EmployeeToEmployeeDAO());
         registry.addConverter(new CarDAOtoCar());
+        registry.addConverter(new ClientToClientDAO());
     }
 
 }

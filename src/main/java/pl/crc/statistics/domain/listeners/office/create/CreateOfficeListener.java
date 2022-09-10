@@ -10,7 +10,7 @@ import pl.crc.statistics.domain.model.office.OfficeRepository;
 
 @Component
 public class CreateOfficeListener {
-    private static final Logger logger = LoggerFactory.getLogger(CreateOfficeListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CreateOfficeListener.class);
     private final OfficeRepository officeRepository;
     private final ObjectMapper objectMapper;
 
@@ -21,11 +21,11 @@ public class CreateOfficeListener {
 
     @KafkaListener(topics = "create-office", groupId = "group-1")
     public void listen(String value) {
-        logger.info("mapping office {} ", value);
+        LOGGER.info("mapping office {} ", value);
         try {
             officeRepository.save(objectMapper.readValue(value, Office.class));
         } catch (Exception e) {
-            logger.error("Exception occurred during mapping office data: ", e);
+            LOGGER.error("Exception occurred during mapping office data: ", e);
         }
     }
 }

@@ -9,6 +9,6 @@ public class CarDAOtoCar implements Converter<CarDAO, Car> {
     public Car convert(CarDAO carDAO) {
         return new Car(carDAO.getDomainId(), carDAO.getBrand(), carDAO.getModel(), carDAO.getCarType(),
                 carDAO.getFuelType(), carDAO.getGearboxType(), carDAO.getDoorNumber(), carDAO.getBootCapacity(),
-                carDAO.getOfficeId());
+                carDAO.getOfficeId(), carDAO.isDeleted());
     }
 }

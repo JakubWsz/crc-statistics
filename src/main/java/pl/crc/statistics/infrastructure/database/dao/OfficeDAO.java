@@ -12,7 +12,7 @@ public class OfficeDAO {
     private final Address address;
     private final String websiteURL;
     private final String officeCEO;
-    private final boolean deleted;
+    private boolean deleted;
 
     public OfficeDAO(String domainId, Address address, String websiteURL, String officeCEO,
                      boolean deleted) {
@@ -45,5 +45,9 @@ public class OfficeDAO {
 
     public boolean isDeleted() {
         return deleted;
+    }
+
+    public void markAsDeleted() {
+        this.deleted = true;
     }
 }

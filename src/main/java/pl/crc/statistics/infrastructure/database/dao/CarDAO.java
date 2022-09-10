@@ -16,9 +16,10 @@ public class CarDAO {
     private final String doorNumber;
     private final Double bootCapacity;
     private final String officeId;
+    private boolean deleted;
 
-    public CarDAO( String domainId, String brand, String model, String carType, String fuelType,
-                  String gearboxType, String doorNumber, Double bootCapacity, String officeId) {
+    public CarDAO(String domainId, String brand, String model, String carType, String fuelType,
+                  String gearboxType, String doorNumber, Double bootCapacity, String officeId, boolean deleted) {
         this.domainId = domainId;
         this.brand = brand;
         this.model = model;
@@ -28,6 +29,7 @@ public class CarDAO {
         this.doorNumber = doorNumber;
         this.bootCapacity = bootCapacity;
         this.officeId = officeId;
+        this.deleted = deleted;
     }
 
     public String getId() {
@@ -68,5 +70,13 @@ public class CarDAO {
 
     public String getOfficeId() {
         return officeId;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void markAsDeleted() {
+        deleted = true;
     }
 }

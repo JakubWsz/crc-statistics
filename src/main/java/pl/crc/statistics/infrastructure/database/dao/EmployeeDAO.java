@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Document(indexName = "employee")
 public class EmployeeDAO {
     @Id
-    private  String id;
+    private String id;
     private final String domainId;
     private final String firstname;
     private final String lastname;
@@ -20,7 +20,7 @@ public class EmployeeDAO {
     private final String contractType;
     private final String position;
     private final String officeId;
-    private final boolean deleted;
+    private boolean deleted;
 
     public EmployeeDAO(String domainId, String firstname, String lastname, Address address, String pesel,
                        String accountNumber, BigDecimal salaryAmount, String contractType, String position,
@@ -84,5 +84,9 @@ public class EmployeeDAO {
 
     public boolean isDeleted() {
         return deleted;
+    }
+
+    public void markAsDeleted() {
+        this.deleted = true;
     }
 }

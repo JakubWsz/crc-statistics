@@ -10,9 +10,10 @@ public class Car{
     private final String doorNumber;
     private final Double bootCapacity;
     private final String officeId;
+    private final boolean deleted;
 
     public Car(String domainId, String brand, String model, String carType, String fuelType, String gearboxType,
-               String doorNumber, Double bootCapacity, String officeId) {
+               String doorNumber, Double bootCapacity, String officeId, boolean deleted) {
         this.id = domainId;
         this.brand = brand;
         this.model = model;
@@ -22,6 +23,7 @@ public class Car{
         this.doorNumber = doorNumber;
         this.bootCapacity = bootCapacity;
         this.officeId = officeId;
+        this.deleted = deleted;
     }
 
     public String getId() {
@@ -58,6 +60,10 @@ public class Car{
 
     public String getOfficeId() {
         return officeId;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
     }
 
     @Override
