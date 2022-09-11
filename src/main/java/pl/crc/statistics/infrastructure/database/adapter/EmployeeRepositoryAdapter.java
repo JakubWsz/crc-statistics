@@ -36,6 +36,7 @@ public class EmployeeRepositoryAdapter implements EmployeeRepository {
         if (optionalEmployeeDAO.isPresent()){
             EmployeeDAO employeeDAO = optionalEmployeeDAO.get();
             employeeDAO.markAsDeleted();
+            employeeDAO.updateObject(employeeDAO.getId());
             employeeRepositoryElasticsearch.save(employeeDAO);
             LOGGER.info("employee successfully deleted '{}'",employeeDAO.getDomainId());
         }

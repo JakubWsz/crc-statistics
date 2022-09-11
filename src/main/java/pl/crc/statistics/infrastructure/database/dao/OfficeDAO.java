@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import pl.crc.statistics.domain.model.Address;
 
+import java.time.LocalDateTime;
+
 @Document(indexName = "office")
 public class OfficeDAO {
     @Id
@@ -12,6 +14,7 @@ public class OfficeDAO {
     private final Address address;
     private final String websiteURL;
     private final String officeCEO;
+    private LocalDateTime modificationDate;
     private boolean deleted;
 
     public OfficeDAO(String domainId, Address address, String websiteURL, String officeCEO,
@@ -49,5 +52,10 @@ public class OfficeDAO {
 
     public void markAsDeleted() {
         this.deleted = true;
+    }
+
+    public void updateObject(String id) {
+        this.id = id;
+        this.modificationDate = LocalDateTime.now();
     }
 }

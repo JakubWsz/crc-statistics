@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.ConversionService;
 import pl.crc.statistics.domain.model.office.Office;
 import pl.crc.statistics.domain.model.office.OfficeRepository;
-import pl.crc.statistics.infrastructure.database.dao.EmployeeDAO;
 import pl.crc.statistics.infrastructure.database.dao.OfficeDAO;
 import pl.crc.statistics.infrastructure.database.repository.OfficeRepositoryElasticsearch;
 
@@ -37,6 +36,7 @@ public class OfficeRepositoryAdapter implements OfficeRepository {
         if (optionalOfficeDAO.isPresent()) {
             OfficeDAO officeDAO = optionalOfficeDAO.get();
             officeDAO.markAsDeleted();
+            officeDAO.updateObject(officeDAO.getId());
             officeRepositoryElasticsearch.save(officeDAO);
             LOGGER.info("office successfully deleted '{}'", officeDAO.getDomainId());
         }

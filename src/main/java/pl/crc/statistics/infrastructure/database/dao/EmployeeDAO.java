@@ -5,6 +5,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import pl.crc.statistics.domain.model.Address;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Document(indexName = "employee")
 public class EmployeeDAO {
@@ -20,6 +21,7 @@ public class EmployeeDAO {
     private final String contractType;
     private final String position;
     private final String officeId;
+    private LocalDateTime modificationDate;
     private boolean deleted;
 
     public EmployeeDAO(String domainId, String firstname, String lastname, Address address, String pesel,
@@ -88,5 +90,10 @@ public class EmployeeDAO {
 
     public void markAsDeleted() {
         this.deleted = true;
+    }
+
+    public void updateObject(String id) {
+        this.id = id;
+        this.modificationDate = LocalDateTime.now();
     }
 }

@@ -3,6 +3,8 @@ package pl.crc.statistics.infrastructure.database.dao;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
+import java.time.LocalDateTime;
+
 @Document(indexName = "car")
 public class CarDAO {
     @Id
@@ -16,6 +18,7 @@ public class CarDAO {
     private final String doorNumber;
     private final Double bootCapacity;
     private final String officeId;
+    private LocalDateTime modificationDate;
     private boolean deleted;
 
     public CarDAO(String domainId, String brand, String model, String carType, String fuelType,
@@ -78,5 +81,10 @@ public class CarDAO {
 
     public void markAsDeleted() {
         deleted = true;
+    }
+
+    public void updateObject(String id) {
+        this.id = id;
+        this.modificationDate = LocalDateTime.now();
     }
 }

@@ -4,17 +4,19 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Document(indexName = "client")
 public class ClientDAO {
     @Id
-    private  String id;
+    private String id;
     private final String domainId;
     private final String firstname;
     private final String lastname;
     private final String email;
     private final String password;
     private final LocalDate birthdate;
+    private LocalDateTime modificationDate;
 
     public ClientDAO(String domainId, String firstname, String lastname, String email, String password,
                      LocalDate birthdate) {
@@ -52,5 +54,10 @@ public class ClientDAO {
 
     public LocalDate getBirthdate() {
         return birthdate;
+    }
+
+    public void updateObject(String id) {
+        this.id = id;
+        this.modificationDate = LocalDateTime.now();
     }
 }
