@@ -26,19 +26,18 @@ public class EmployeeRepositoryAdapter implements EmployeeRepository {
     public Employee save(Employee employee) {
         employeeRepositoryElasticsearch.save(Objects.requireNonNull(conversionService.convert(
                 employee, EmployeeDAO.class)));
-        LOGGER.info("employee successfully saved '{}'",employee);
+        LOGGER.info("employee successfully saved '{}'", employee);
         return employee;
     }
 
     @Override
     public void delete(String id) {
-        Optional<EmployeeDAO> optionalEmployeeDAO = employeeRepositoryElasticsearch.findByDomainId(id);
-        if (optionalEmployeeDAO.isPresent()){
-            EmployeeDAO employeeDAO = optionalEmployeeDAO.get();
-            employeeDAO.markAsDeleted();
-            employeeDAO.updateObject(employeeDAO.getId());
-            employeeRepositoryElasticsearch.save(employeeDAO);
-            LOGGER.info("employee successfully deleted '{}'",employeeDAO.getDomainId());
-        }
+        employeeRepositoryElasticsearch.findByDomainId(id).ifPresent(
+                employeeDAO -> {
+                    employeeDAO.markAsDeleted();
+                    employeeDAO.updateObject(employeeDAO.getId());
+                    employeeRepositoryElasticsearch.save(employeeDAO);
+                    LOGGER.info("employee successfully deleted '{}'", employeeDAO.getDomainId());
+                });
     }
 }
