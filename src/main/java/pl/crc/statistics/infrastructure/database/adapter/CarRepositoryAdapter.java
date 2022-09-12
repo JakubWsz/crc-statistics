@@ -9,7 +9,6 @@ import pl.crc.statistics.infrastructure.database.dao.CarDAO;
 import pl.crc.statistics.infrastructure.database.repository.CarRepositoryElasticsearch;
 
 import java.util.Objects;
-import java.util.Optional;
 
 public class CarRepositoryAdapter implements CarRepository {
     private static final Logger LOGGER = LoggerFactory.getLogger(CarRepositoryAdapter.class);
@@ -30,13 +29,11 @@ public class CarRepositoryAdapter implements CarRepository {
 
     @Override
     public void delete(String id) {
-       Optional<CarDAO> optionalCarDAO = carRepositoryElasticsearch.findByDomainId(id);
-       if (optionalCarDAO.isPresent()){
-           CarDAO carDAO = optionalCarDAO.get();
-           carDAO.markAsDeleted();
-           carDAO.updateObject(carDAO.getId());
-           carRepositoryElasticsearch.save(carDAO);
-           LOGGER.info("car successfully deleted '{}'",carDAO.getDomainId());
-       }
+               carRepositoryElasticsearch.findByDomainId(id).ifPresent(carDAO -> {
+                   carDAO.markAsDeleted();
+                   carDAO.updateObject(carDAO.getId());
+                   carRepositoryElasticsearch.save(carDAO);
+                   LOGGER.info("car successfully deleted '{}'",carDAO.getDomainId());
+       });
     }
 }

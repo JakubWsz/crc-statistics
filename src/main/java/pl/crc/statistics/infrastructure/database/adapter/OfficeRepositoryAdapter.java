@@ -9,7 +9,6 @@ import pl.crc.statistics.infrastructure.database.dao.OfficeDAO;
 import pl.crc.statistics.infrastructure.database.repository.OfficeRepositoryElasticsearch;
 
 import java.util.Objects;
-import java.util.Optional;
 
 
 public class OfficeRepositoryAdapter implements OfficeRepository {
@@ -32,13 +31,12 @@ public class OfficeRepositoryAdapter implements OfficeRepository {
 
     @Override
     public void delete(String id) {
-        Optional<OfficeDAO> optionalOfficeDAO = officeRepositoryElasticsearch.findByDomainId(id);
-        if (optionalOfficeDAO.isPresent()) {
-            OfficeDAO officeDAO = optionalOfficeDAO.get();
-            officeDAO.markAsDeleted();
-            officeDAO.updateObject(officeDAO.getId());
-            officeRepositoryElasticsearch.save(officeDAO);
-            LOGGER.info("office successfully deleted '{}'", officeDAO.getDomainId());
-        }
+        officeRepositoryElasticsearch.findByDomainId(id).ifPresent(
+                officeDAO -> {
+                    officeDAO.markAsDeleted();
+                    officeDAO.updateObject(officeDAO.getId());
+                    officeRepositoryElasticsearch.save(officeDAO);
+                    LOGGER.info("office successfully deleted '{}'", officeDAO.getDomainId());
+                });
     }
 }
