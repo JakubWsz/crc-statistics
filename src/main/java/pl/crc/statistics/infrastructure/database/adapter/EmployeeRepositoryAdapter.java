@@ -39,4 +39,12 @@ public class EmployeeRepositoryAdapter implements EmployeeRepository {
                     LOGGER.info("employee successfully deleted '{}'", employeeDAO.getDomainId());
                 });
     }
+
+    @Override
+    public Employee update(Employee employee) {
+        employeeRepositoryElasticsearch.save(Objects.requireNonNull(conversionService.convert(
+                employee, EmployeeDAO.class)));
+        LOGGER.info("employee successfully update '{}'", employee);
+        return employee;
+    }
 }

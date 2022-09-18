@@ -39,4 +39,11 @@ public class OfficeRepositoryAdapter implements OfficeRepository {
                     LOGGER.info("office successfully deleted '{}'", officeDAO.getDomainId());
                 });
     }
+
+    @Override
+    public Office update(Office office){
+        officeRepositoryElasticsearch.save(Objects.requireNonNull(conversionService.convert(office, OfficeDAO.class)));
+        LOGGER.info("office successfully updated '{}'", office);
+        return office;
+    }
 }

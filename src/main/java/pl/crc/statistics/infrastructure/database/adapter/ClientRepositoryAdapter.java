@@ -28,4 +28,13 @@ public class ClientRepositoryAdapter implements ClientRepository {
         LOGGER.info("client successfully saved '{}'", client);
         return client;
     }
+
+    @Override
+    public Client update(Client client) {
+        clientRepositoryElasticsearch.save(Objects.requireNonNull(conversionService.convert(client, ClientDAO.class)));
+        LOGGER.info("client successfully updated '{}'", client);
+        return client;
+    }
+
+
 }

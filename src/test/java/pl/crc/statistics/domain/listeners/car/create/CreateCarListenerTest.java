@@ -1,15 +1,11 @@
 package pl.crc.statistics.domain.listeners.car.create;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.annotation.DirtiesContext;
-import pl.crc.statistics.domain.model.car.Car;
-import pl.crc.statistics.infrastructure.database.dao.CarDAO;
+import pl.crc.statistics.domain.listeners.car.CreateCarListener;
 import pl.crc.statistics.mock.KafkaProducer;
-
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

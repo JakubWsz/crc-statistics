@@ -1,4 +1,4 @@
-package pl.crc.statistics.domain.listeners.car.delete;
+package pl.crc.statistics.domain.listeners.car;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
