@@ -13,8 +13,8 @@ import pl.crc.statistics.infrastructure.database.repository.EmployeeRepositoryEl
 import pl.crc.statistics.infrastructure.database.adapter.OfficeRepositoryAdapter;
 import pl.crc.statistics.infrastructure.database.repository.OfficeRepositoryElasticsearch;
 
-@Configuration
-@EnableElasticsearchRepositories(basePackages = "pl.crc.statistics.infrastructure.database.repository")
+//@Configuration
+//@EnableElasticsearchRepositories(basePackages = "pl.crc.statistics.infrastructure.database.repository")
 public class Config {
 
     @Bean
