@@ -3,6 +3,7 @@ package pl.crc.statistics.infrastructure.database.adapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
 import pl.crc.statistics.domain.model.employee.Employee;
 import pl.crc.statistics.domain.model.employee.EmployeeRepository;
 import pl.crc.statistics.infrastructure.database.dao.EmployeeDAO;
@@ -10,6 +11,7 @@ import pl.crc.statistics.infrastructure.database.repository.EmployeeRepositoryEl
 
 import java.util.Objects;
 
+@Component
 public class EmployeeRepositoryAdapter implements EmployeeRepository {
     private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeRepositoryAdapter.class);
     private final EmployeeRepositoryElasticsearch employeeRepositoryElasticsearch;

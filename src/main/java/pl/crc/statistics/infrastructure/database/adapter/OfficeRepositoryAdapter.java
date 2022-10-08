@@ -3,6 +3,7 @@ package pl.crc.statistics.infrastructure.database.adapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
 import pl.crc.statistics.domain.model.office.Office;
 import pl.crc.statistics.domain.model.office.OfficeRepository;
 import pl.crc.statistics.infrastructure.database.dao.OfficeDAO;
@@ -10,7 +11,7 @@ import pl.crc.statistics.infrastructure.database.repository.OfficeRepositoryElas
 
 import java.util.Objects;
 
-
+@Component
 public class OfficeRepositoryAdapter implements OfficeRepository {
     private static final Logger LOGGER = LoggerFactory.getLogger(OfficeRepositoryAdapter.class);
     private final OfficeRepositoryElasticsearch officeRepositoryElasticsearch;

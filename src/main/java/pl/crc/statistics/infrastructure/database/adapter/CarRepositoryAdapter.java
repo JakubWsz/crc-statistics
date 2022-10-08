@@ -3,6 +3,7 @@ package pl.crc.statistics.infrastructure.database.adapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
 import pl.crc.statistics.domain.model.car.Car;
 import pl.crc.statistics.domain.model.car.CarRepository;
 import pl.crc.statistics.infrastructure.database.dao.CarDAO;
@@ -10,6 +11,7 @@ import pl.crc.statistics.infrastructure.database.repository.CarRepositoryElastic
 
 import java.util.Objects;
 
+@Component
 public class CarRepositoryAdapter implements CarRepository {
     private static final Logger LOGGER = LoggerFactory.getLogger(CarRepositoryAdapter.class);
     private final CarRepositoryElasticsearch carRepositoryElasticsearch;
